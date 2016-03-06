@@ -7,7 +7,7 @@ export default Ember.Route.extend({
 
   actions: {
     openCheckoutModal(book) {
-      return this.render('components/checkout-modal', {
+      return this.render('modal', {
         outlet: 'modal',
         into: 'application',
         model: book,
