@@ -57,10 +57,20 @@ a.author {
 	transition: opacity 400ms ease-in;
 }
 
-.background {
+.modal-backdrop {
   z-index: -999;
   opacity: 0.3;
   pointer-events: none;
   filter: blur(3px);
   -webkit-filter: blur(3px);
+}
+
+/* borrowed from the Bootstrap */
+.modal-open {
+  overflow: hidden; /* body class for killing the scroll */
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
