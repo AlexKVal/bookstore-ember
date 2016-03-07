@@ -1,8 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model() {
-    return this.store.findAll('book');
+  queryParams: {
+    limit: {
+      // replace: true,
+      refreshModel: true
+    }
+  },
+
+  model(params) {
+    return this.store.query('book', params);
   },
 
   actions: {
@@ -13,7 +20,7 @@ export default Ember.Route.extend({
       return this.render('modal', {
         outlet: 'modal',
         into: 'application',
-        model: book.reload(), // this.store.findRecord('book', book.id, {reload: true}),
+        model: book.reload(),
         controller: 'application'
       });
     },
@@ -26,6 +33,11 @@ export default Ember.Route.extend({
         outlet: 'modal',
         parentView: 'application'
       });
+    },
+
+    showAll() {
+      const total = this.controllerFor('books').get('total');
+      this.transitionTo({ queryParams: { limit: total } });
     }
   }
 });
